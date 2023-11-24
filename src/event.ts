@@ -86,21 +86,21 @@ export abstract class Event {
     } = {},
   ) {
     return new class {
-      private readonly id = crypto.randomUUID()
+      readonly id = crypto.randomUUID()
 
-      private readonly payload = Object.seal(Object.assign({
+      readonly payload = Object.seal(Object.assign({
         data: Object.freeze(payload),
       }, schema ? { schema } : {}))
 
-      private metadata: Metadata = {
+      metadata: Metadata = {
         name,
         timestamp: Math.floor(+(new Date()) / 1000),
       }
 
-      private locks: Partial<Lock> = {}
-      private metrics: Partial<Metrics> = {}
-      private policy: Partial<Policy> = {}
-      private encryption: Partial<Encryption> = {}
+      locks: Partial<Lock> = {}
+      metrics: Partial<Metrics> = {}
+      policy: Partial<Policy> = {}
+      encryption: Partial<Encryption> = {}
 
       setMetadata(key: keyof Metadata, value: Metadata[typeof key]) {
         Object.assign(this.metadata, { [key]: value })
