@@ -127,7 +127,7 @@ export abstract class Event {
         return this
       }
 
-      private serialize() {
+      serialize() {
         return JSON.stringify({
           id: this.id,
           type: this.metadata.name,
